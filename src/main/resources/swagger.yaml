@@ -1,0 +1,55 @@
+openapi: 3.0.0
+info:
+  title: Employee onboarding details at PravinTech
+  version: 1.0.0
+  description: Post employee and Get all employees
+
+paths:
+  /employee:
+    post:
+      tags:
+        - Employee
+      summary: Add employee details
+      operationId: addEmployee
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeDto'
+      responses:
+        '201':
+          description: Employee Created
+          content:
+            application/json:
+              schema:
+                type: string
+
+    get:
+      tags:
+        - Employee
+      summary: Get all employee details
+      operationId: getAllEmployee
+      responses:
+        '200':
+          description: List of employees
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/EmployeeDto'
+
+components:
+  schemas:
+    EmployeeDto:
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        role:
+          type: string
+        age:
+          type: integer
+        salary:
+          type: number
+          format: double
